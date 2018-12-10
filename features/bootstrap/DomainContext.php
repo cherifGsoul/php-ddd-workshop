@@ -38,9 +38,9 @@ class DomainContext implements Context
     }
 
     /**
-     * @Given the distance of the route for between the two location is :arg1 KM can be driven in :arg2 min
+     * @Given the distance of the route between the two location is :arg1 KM can be driven in :arg2 min
      */
-    public function theDistanceOfTheRouteForBetweenTheTwoLocationIsKmCanBeDrivenInMin($arg1, $arg2)
+    public function theDistanceOfTheRouteBetweenTheTwoLocationIsKmCanBeDrivenInMin($arg1, $arg2)
     {
         throw new PendingException();
     }

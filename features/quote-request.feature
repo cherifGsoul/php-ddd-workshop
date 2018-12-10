@@ -13,7 +13,7 @@ Feature: Ask for a quote for a taxi ride
 	Scenario: Ask for a quote for a route with origin and destination in served cities
 		Given I'm at "Palace of culture Mohamed BOUDIAF" in the city of "Annaba"
 		And I need to go to "Aéroport International d'Annaba - Rabah Bitat" in the city of "El Bouni"
-		And the distance of the route for between the two location is 10 KM can be driven in 25 min
+		And the distance of the route between the two location is 10 KM can be driven in 25 min
 		When I request for a quote for this route
 		Then the fare should be 575 DZD
 
