@@ -1,0 +1,5 @@
+default:
+  suites:
+    domain:
+      contexts: 
+        - DomainContext

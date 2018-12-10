@@ -1,0 +1,25 @@
+{
+    "name": "taxihub/fare-calculator",
+    "description": "An example of implementing domain driven design for taxi fare calculator sub-domain",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Cherif BOUCHELAGHEM",
+            "email": "cherif.bouchelaghem@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "behat/behat": "^3.5",
+        "phpspec/phpspec": "^5.1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Taxihub\\FareCalculator\\": "src/"
+        }
+    }
+}

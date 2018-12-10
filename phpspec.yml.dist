@@ -1,0 +1,4 @@
+suites:
+    fare_calculator_suite:
+        namespace: Taxihub\FareCalculator
+        psr4_prefix: Taxihub\FareCalculator
