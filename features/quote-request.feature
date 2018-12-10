@@ -13,4 +13,4 @@ Feature: Ask for a quote for a taxi ride
 		Given a route between the "Palace of culture Mohamed BOUDIAF" in the city of "Annaba" and the "Aéroport International d'Annaba - Rabah Bitat" in the city of "El Bouni"
 		And the itinerary distance for this route is 10 KM can be driven in 25 min
 		When I request for a quote for this itinerary
-		Then the fare should be 575 DZD
+		Then the quotation fare should be 575 DZD
