@@ -22,33 +22,25 @@ class DomainContext implements Context
     }
 
     /**
-     * @Given I'm at :arg1 in the city of :arg2
+     * @Given a route between the :arg1 in the city of :arg2 and the :arg3 in the city of :arg4
      */
-    public function imAtInTheCityOf($arg1, $arg2)
+    public function aRouteBetweenTheInTheCityOfAndTheInTheCityOf($arg1, $arg2, $arg3, $arg4)
     {
         throw new PendingException();
     }
 
     /**
-     * @Given I need to go to :arg1 in the city of :arg2
+     * @Given the itinerary distance for this route is :arg1 KM can be driven in :arg2 min
      */
-    public function iNeedToGoToInTheCityOf($arg1, $arg2)
+    public function theItineraryDistanceForThisRouteIsKmCanBeDrivenInMin($arg1, $arg2)
     {
         throw new PendingException();
     }
 
     /**
-     * @Given the distance of the route between the two location is :arg1 KM can be driven in :arg2 min
+     * @When I request for a quote for this itinerary
      */
-    public function theDistanceOfTheRouteBetweenTheTwoLocationIsKmCanBeDrivenInMin($arg1, $arg2)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When I request for a quote for this route
-     */
-    public function iRequestForAQuoteForThisRoute()
+    public function iRequestForAQuoteForThisItinerary()
     {
         throw new PendingException();
     }
@@ -57,22 +49,6 @@ class DomainContext implements Context
      * @Then the fare should be :arg1 DZD
      */
     public function theFareShouldBeDzd($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given the city of :arg1 is not listed in served cities
-     */
-    public function theCityOfIsNotListedInServedCities($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then I should not have a fare
-     */
-    public function iShouldNotHaveAFare()
     {
         throw new PendingException();
     }
