@@ -10,6 +10,7 @@ use Taxihub\FareCalculator\Domain\Model\Duration;
 use Taxihub\FareCalculator\Domain\Model\Address;
 use Taxihub\FareCalculator\Domain\Model\City;
 use Taxihub\FareCalculator\Domain\Model\Fare;
+use Taxihub\FareCalculator\Domain\Model\Passenger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -18,6 +19,7 @@ class QuotationSpec extends ObjectBehavior
     function it_has_itinerary_and_fare()
     {
         $this->beConstructedWith(
+            Passenger::named('Cherif'),
             new Itinerary(
                 new Route(
                     new Address(Argument::type('string'), City::fromString(Argument::type('string'))),

@@ -5,11 +5,13 @@ namespace Taxihub\FareCalculator\Domain\Model;
 
 class Quotation
 {
+    private $passenger;
     private $itinerary;
     private $fare;
     
-    public function __construct(Itinerary $itinerary, Fare $fare)
+    public function __construct(Passenger $passenger, Itinerary $itinerary, Fare $fare)
     {
+        $this->setPassenger($passenger);
         $this->setItinerary($itinerary);
         $this->setFare($fare);
     }
@@ -24,12 +26,17 @@ class Quotation
         return $this->fare;
     }
 
-    private function setItinerary($itinerary)
+    private function setPassenger(Passenger $passenger)
+    {
+        $this->passenger = $passenger;
+    }
+
+    private function setItinerary(Itinerary $itinerary)
     {
         $this->itinerary = $itinerary;
     }
 
-    private function setFare($fare)
+    private function setFare(Fare $fare)
     {
         $this->fare = $fare;
     }

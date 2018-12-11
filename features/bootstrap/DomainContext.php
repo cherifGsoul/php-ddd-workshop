@@ -12,6 +12,7 @@ use Taxihub\FareCalculator\Domain\Model\Duration;
 use Taxihub\FareCalculator\Domain\Model\Itinerary;
 use Taxihub\FareCalculator\Domain\Model\FareCalculator;
 use Taxihub\FareCalculator\Domain\Model\Fare;
+use Taxihub\FareCalculator\Domain\Model\Passenger;
 
 /**
  * Defines application features from the specific context.
@@ -65,6 +66,13 @@ class DomainContext implements Context
         return Fare::fromDinars($dinars);
     }
 
+    /**
+     * @Transform :passenger
+     */
+    public function transforPassenger($passenger)
+    {
+        return Passenger::named($passenger);
+    }
 
     /**
      * @Given a route between the :originStreet in the city of :originCity and the :destinationStreet in the city of :destinationCity
@@ -90,11 +98,12 @@ class DomainContext implements Context
     }
 
     /**
-     * @When I request for a quote for this itinerary
+     * @When :passenger request for a quote for this itinerary
      */
-    public function iRequestForAQuoteForThisItinerary()
+    public function iRequestForAQuoteForThisItinerary($passenger)
     {
-        $this->quotation = $this->fareCalculator->__invoke($this->itinerary);
+        $fareCalculator = $this->fareCalculator;
+        $this->quotation = $fareCalculator($passenger, $this->itinerary);
     }
 
     /**

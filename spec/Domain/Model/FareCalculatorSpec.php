@@ -10,6 +10,7 @@ use Taxihub\FareCalculator\Domain\Model\Address;
 use Taxihub\FareCalculator\Domain\Model\Distance;
 use Taxihub\FareCalculator\Domain\Model\Duration;
 use Taxihub\FareCalculator\Domain\Model\Quotation;
+use Taxihub\FareCalculator\Domain\Model\Passenger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -18,6 +19,7 @@ class FareCalculatorSpec extends ObjectBehavior
     function it_calculate_the_fare_for_an_itinerary()
     {
         $this->__invoke(
+            Passenger::named('Cherif'),
             new Itinerary(
                 new Route(
                     new Address(Argument::type('string'), City::fromString(Argument::type('string'))),
