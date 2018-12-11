@@ -6,13 +6,13 @@ class Itinerary
 {
     private $route;
     private $distance;
-    private $duration;
+    private $drivenTime;
     
-    public function __construct(Route $route, Distance $distance, Duration $duration)
+    public function __construct(Route $route, Distance $distance, DrivenTime $drivenTime)
     {
         $this->setRoute($route);
         $this->setDistance($distance);
-        $this->setDuration($duration);
+        $this->setDrivenTime($drivenTime);
     }
 
     public function route()
@@ -25,9 +25,9 @@ class Itinerary
         return $this->distance;
     }
 
-    public function duration()
+    public function drivenTime()
     {
-        return $this->duration;
+        return $this->drivenTime;
     }
 
     private function setRoute($route)
@@ -40,8 +40,8 @@ class Itinerary
         $this->distance = $distance;
     }
 
-    private function setDuration($duration)
+    private function setDrivenTime($drivenTime)
     {
-        $this->duration = $duration;
+        $this->drivenTime = $drivenTime;
     }
 }

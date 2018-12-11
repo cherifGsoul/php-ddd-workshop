@@ -2,7 +2,7 @@
 
 namespace Taxihub\FareCalculator\Domain\Model;
 
-class Duration
+class DrivenTime
 {
     private $minutes;
     
@@ -12,11 +12,11 @@ class Duration
 
     public static function fromMinutes($minutes)
     {
-        $duration = new Duration();
+        $drivenTime = new DrivenTime();
 
-        $duration->setMinutes($minutes);
+        $drivenTime->setMinutes($minutes);
 
-        return $duration;
+        return $drivenTime;
     }
 
     public function minutes()

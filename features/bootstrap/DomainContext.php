@@ -8,7 +8,7 @@ use Taxihub\FareCalculator\Domain\Model\Route;
 use Taxihub\FareCalculator\Domain\Model\Address;
 use Taxihub\FareCalculator\Domain\Model\City;
 use Taxihub\FareCalculator\Domain\Model\Distance;
-use Taxihub\FareCalculator\Domain\Model\Duration;
+use Taxihub\FareCalculator\Domain\Model\DrivenTime;
 use Taxihub\FareCalculator\Domain\Model\Itinerary;
 use Taxihub\FareCalculator\Domain\Model\FareCalculator;
 use Taxihub\FareCalculator\Domain\Model\Fare;
@@ -55,7 +55,7 @@ class DomainContext implements Context
      */
     public function transformMinutes($minutes)
     {
-        return Duration::fromMinutes($minutes);
+        return DrivenTime::fromMinutes($minutes);
     }
 
      /**

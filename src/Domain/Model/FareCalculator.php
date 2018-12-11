@@ -9,8 +9,8 @@ class FareCalculator
     public function __invoke(Passenger $passenger, Itinerary $itinerary)
     {
         $distanceFee = $itinerary->distance()->kilometers() * 40;
-        $durationFee = $itinerary->duration()->minutes() * 5;
-        $calculatedFare = self::MINIMUM_FARE + $distanceFee + $durationFee;
+        $drivenTimeFee = $itinerary->drivenTime()->minutes() * 5;
+        $calculatedFare = self::MINIMUM_FARE + $distanceFee + $drivenTimeFee;
         $fare = Fare::fromDinars($calculatedFare);
         return new Quotation($passenger, $itinerary, $fare);
     }
