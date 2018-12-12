@@ -2,14 +2,14 @@
 
 namespace Taxihub\FareCalculator\Domain\Model;
 
-class City
+class ServedCity
 {
     private $name;
 
     
     public static function fromString($name)
     {
-        $city = new City();
+        $city = new ServedCity();
         
         $city->setName($name);
         

@@ -8,7 +8,7 @@ use Taxihub\FareCalculator\Domain\Model\Route;
 use Taxihub\FareCalculator\Domain\Model\Distance;
 use Taxihub\FareCalculator\Domain\Model\DrivenTime;
 use Taxihub\FareCalculator\Domain\Model\Address;
-use Taxihub\FareCalculator\Domain\Model\City;
+use Taxihub\FareCalculator\Domain\Model\ServedCity;
 use Taxihub\FareCalculator\Domain\Model\Fare;
 use Taxihub\FareCalculator\Domain\Model\Passenger;
 use PhpSpec\ObjectBehavior;
@@ -22,8 +22,8 @@ class QuotationSpec extends ObjectBehavior
             Passenger::named('Cherif'),
             new Itinerary(
                 new Route(
-                    new Address(Argument::type('string'), City::fromString(Argument::type('string'))),
-                    new Address(Argument::type('string'), City::fromString(Argument::type('string')))
+                    new Address(Argument::type('string'), ServedCity::fromString(Argument::type('string'))),
+                    new Address(Argument::type('string'), ServedCity::fromString(Argument::type('string')))
                 ),
                 Distance::fromKilometers(10),
                 DrivenTime::fromMinutes(25)

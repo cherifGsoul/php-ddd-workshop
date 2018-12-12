@@ -6,13 +6,14 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Taxihub\FareCalculator\Domain\Model\Route;
 use Taxihub\FareCalculator\Domain\Model\Address;
-use Taxihub\FareCalculator\Domain\Model\City;
+use Taxihub\FareCalculator\Domain\Model\ServedCity;
 use Taxihub\FareCalculator\Domain\Model\Distance;
 use Taxihub\FareCalculator\Domain\Model\DrivenTime;
 use Taxihub\FareCalculator\Domain\Model\Itinerary;
 use Taxihub\FareCalculator\Domain\Model\FareCalculator;
 use Taxihub\FareCalculator\Domain\Model\Fare;
 use Taxihub\FareCalculator\Domain\Model\Passenger;
+use Taxihub\FareCalculator\Domain\Model\ServedCities;
 
 /**
  * Defines application features from the specific context.
@@ -20,6 +21,7 @@ use Taxihub\FareCalculator\Domain\Model\Passenger;
 class DomainContext implements Context
 {
     private $fareCalculator;
+    private $servedCities;
 
     /**
      * Initializes context.
@@ -39,7 +41,7 @@ class DomainContext implements Context
      */
     public function transformCity($string)
     {
-        return City::fromString($string);
+        return ServedCity::fromString($string);
     }
 
     /**
@@ -69,7 +71,7 @@ class DomainContext implements Context
     /**
      * @Transform :passenger
      */
-    public function transforPassenger($passenger)
+    public function transformPassenger($passenger)
     {
         return Passenger::named($passenger);
     }

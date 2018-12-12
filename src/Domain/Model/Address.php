@@ -5,12 +5,12 @@ namespace Taxihub\FareCalculator\Domain\Model;
 class Address
 {
     private $street;
-    private $city;
+    private $servedCity;
 
-    public function __construct($street, City $city)
+    public function __construct($street, ServedCity $servedCity)
     {
         $this->setStreet($street);
-        $this->setCity($city);
+        $this->setServedCity($servedCity);
     }
     
     public function street()
@@ -18,9 +18,9 @@ class Address
         return $this->street;
     }
 
-    public function city()
+    public function servedCity()
     {
-        return $this->city;
+        return $this->servedCity;
     }
 
     private function setStreet($street)
@@ -28,9 +28,9 @@ class Address
         $this->street = $street;
     }
 
-    private function setCity(City $city)
+    private function setServedCity(servedCity $servedCity)
     {
-        $this->city = $city;
+        $this->servedCity = $servedCity;
     }
 
 }
