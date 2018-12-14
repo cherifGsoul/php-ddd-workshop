@@ -109,7 +109,7 @@ class DomainContext implements Context
     }
 
     /**
-     * @Then the quotation fare should be :dinars DZD
+     * @Then the quotation estimated fare should be :dinars DZD
      */
     public function theFareShouldBeDzd($dinars)
     {
