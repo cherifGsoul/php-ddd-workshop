@@ -4,12 +4,23 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-
+use Taxihub\FareCalculator\Domain\Model\Route;
+use Taxihub\FareCalculator\Domain\Model\Address;
+use Taxihub\FareCalculator\Domain\Model\ServedCity;
+use Taxihub\FareCalculator\Domain\Model\Distance;
+use Taxihub\FareCalculator\Domain\Model\DrivenTime;
+use Taxihub\FareCalculator\Domain\Model\Itinerary;
+use Taxihub\FareCalculator\Domain\Model\FareCalculator;
+use Taxihub\FareCalculator\Domain\Model\Fare;
+use Taxihub\FareCalculator\Domain\Model\Passenger;
+use Taxihub\FareCalculator\Domain\Model\ServedCities;
 /**
  * Defines application features from the specific context.
  */
 class DomainContext implements Context
 {
+    private $fareCalculator;
+    private $servedCities;
     /**
      * Initializes context.
      *
@@ -19,37 +30,78 @@ class DomainContext implements Context
      */
     public function __construct()
     {
+        $this->fareCalculator = new FareCalculator();
     }
-
     /**
-     * @Given a route between the :arg1 in the city of :arg2 and the :arg3 in the city of :arg4
+     * @Transform :originCity
+     * @Transform :destinationCity
      */
-    public function aRouteBetweenTheInTheCityOfAndTheInTheCityOf($arg1, $arg2, $arg3, $arg4)
+    public function transformCity($string)
     {
-        throw new PendingException();
+        return ServedCity::fromString($string);
     }
-
     /**
-     * @Given the itinerary distance for this route is :arg1 KM can be driven in :arg2 min
+     * @Transform :kilometers
      */
-    public function theItineraryDistanceForThisRouteIsKmCanBeDrivenInMin($arg1, $arg2)
+    public function transformKilometers($kilometers)
     {
-        throw new PendingException();
+        return Distance::fromKilometers($kilometers);
     }
-
     /**
-     * @When I request for a quote for this itinerary
+     * @Transform :minutes
      */
-    public function iRequestForAQuoteForThisItinerary()
+    public function transformMinutes($minutes)
     {
-        throw new PendingException();
+        return DrivenTime::fromMinutes($minutes);
     }
-
-    /**
-     * @Then the fare should be :arg1 DZD
+     /**
+     * @Transform :dinars
      */
-    public function theFareShouldBeDzd($arg1)
+    public function transformDinars($dinars)
     {
-        throw new PendingException();
+        return Fare::fromDinars($dinars);
+    }
+    /**
+     * @Transform :passenger
+     */
+    public function transformPassenger($passenger)
+    {
+        return Passenger::named($passenger);
+    }
+    /**
+     * @Given a route between the :originStreet in the city of :originCity and the :destinationStreet in the city of :destinationCity
+     */
+    public function aRouteBetweenTheInTheCityOfAndTheInTheCityOf($originStreet, $originCity, $destinationStreet, $destinationCity)
+    {
+        $this->route = new Route(
+            new Address($originStreet, $originCity),
+            new Address($destinationStreet, $destinationCity)
+        );
+    }
+    /**
+     * @Given the itinerary distance for this route is :kilometers KM can be driven in :minutes min
+     */
+    public function theItineraryDistanceForThisRouteIsKmCanBeDrivenInMin($kilometers, $minutes)
+    {
+        $this->itinerary = new Itinerary(
+            $this->route,
+            $kilometers,
+            $minutes
+        );
+    }
+    /**
+     * @When :passenger request for a quote for this itinerary
+     */
+    public function iRequestForAQuoteForThisItinerary($passenger)
+    {
+        $fareCalculator = $this->fareCalculator;
+        $this->quotation = $fareCalculator($passenger, $this->itinerary);
+    }
+    /**
+     * @Then the quotation estimated fare should be :dinars DZD
+     */
+    public function theFareShouldBeDzd($dinars)
+    {
+        expect($this->quotation->fare()->equals($dinars))->to->be->true;
     }
 }
