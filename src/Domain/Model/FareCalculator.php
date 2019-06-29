@@ -9,30 +9,34 @@ class FareCalculator
     const DINARS_PER_KILOMETERE = 40;
     const DINARS_PER_MINUTE = 5;
 
+    private $fare;
+
+    public function __construct()
+    {
+        $this->fare = Fare::fromDinars(self::MINIMUM_FARE);
+    }
+
     public function __invoke(Passenger $passenger, Itinerary $itinerary)
     {
-        $fare = $this->calculateFareForItinerary($itinerary);
-        return new Quotation($passenger, $itinerary, $fare);
+        $this->calculateFareForItinerary($itinerary);
+        return new Quotation($passenger, $itinerary, $this->fare);
     }
 
     private function calculateFareForItinerary(Itinerary $itinerary)
     {
-        $fare = Fare::fromDinars(self::MINIMUM_FARE);
-        $distanceDinars = $this->calculateFareForDistance($itinerary->distance());
-        $drivenTimeDinars = $this->calculareFareForTime($itinerary->drivenTime());
-        $fare = $fare->add($distanceDinars);
-        return $fare->add($drivenTimeDinars);
+        $this->calculateFareForDistance($itinerary->distance());
+        $this->calculareFareForTime($itinerary->drivenTime());
     }
 
     private function calculateFareForDistance(Distance $distance)
     {
         $distanceDinars = $distance->kilometers() * self::DINARS_PER_KILOMETERE;
-        return Fare::FromDinars($distanceDinars);
+        $this->fare = $this->fare->add(Fare::FromDinars($distanceDinars));
     }
 
     private function calculareFareForTime(DrivenTime $drivenTime)
     {
         $drivenTimeDinars = $drivenTime->minutes() * self::DINARS_PER_MINUTE;
-        return Fare::FromDinars($drivenTimeDinars);
+        $this->fare = $this->fare->add(Fare::FromDinars($drivenTimeDinars));
     }
 }
