@@ -10,7 +10,7 @@ class DrivenTime
     {
     }
 
-    public static function fromMinutes($minutes)
+    public static function fromMinutes(int $minutes) : DrivenTime
     {
         $drivenTime = new DrivenTime();
 
@@ -19,7 +19,7 @@ class DrivenTime
         return $drivenTime;
     }
 
-    public function minutes()
+    public function minutes() : int
     {
         return $this->minutes;
     }

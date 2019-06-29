@@ -7,18 +7,18 @@ class Address
     private $street;
     private $servedCity;
 
-    public function __construct($street, ServedCity $servedCity)
+    public function __construct(string $street, ServedCity $servedCity)
     {
         $this->setStreet($street);
         $this->setServedCity($servedCity);
     }
     
-    public function street()
+    public function street() : string
     {
         return $this->street;
     }
 
-    public function servedCity()
+    public function servedCity() : ServedCity
     {
         return $this->servedCity;
     }

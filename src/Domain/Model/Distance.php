@@ -10,7 +10,7 @@ class Distance
     {
     }
 
-    public static function fromKilometers($kilometers)
+    public static function fromKilometers($kilometers) : Distance
     {
         $distance = new Distance();
 
@@ -19,7 +19,7 @@ class Distance
         return $distance;
     }
 
-    public function kilometers()
+    public function kilometers() : int
     {
         return $this->kilometers;
     }

@@ -17,9 +17,22 @@ class FareCalculator
 
     private function calculateFareForItinerary(Itinerary $itinerary)
     {
-        $distanceFee = $itinerary->distance()->kilometers() * self::DINARS_PER_KILOMETERE;
-        $drivenTimeFee = $itinerary->drivenTime()->minutes() * self::DINARS_PER_MINUTE;
-        $calculatedFare = self::MINIMUM_FARE + $distanceFee + $drivenTimeFee;
-        return Fare::fromDinars($calculatedFare);
+        $fare = Fare::fromDinars(self::MINIMUM_FARE);
+        $distanceDinars = $this->calculateFareForDistance($itinerary->distance());
+        $drivenTimeDinars = $this->calculareFareForTime($itinerary->drivenTime());
+        $fare = $fare->add($distanceDinars);
+        return $fare->add($drivenTimeDinars);
+    }
+
+    private function calculateFareForDistance(Distance $distance)
+    {
+        $distanceDinars = $distance->kilometers() * self::DINARS_PER_KILOMETERE;
+        return Fare::FromDinars($distanceDinars);
+    }
+
+    private function calculareFareForTime(DrivenTime $drivenTime)
+    {
+        $drivenTimeDinars = $drivenTime->minutes() * self::DINARS_PER_MINUTE;
+        return Fare::FromDinars($drivenTimeDinars);
     }
 }

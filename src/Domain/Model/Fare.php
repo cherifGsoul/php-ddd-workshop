@@ -10,7 +10,7 @@ class Fare
     {
     }
 
-    public static function fromDinars($dinars)
+    public static function fromDinars($dinars) : Fare
     {
         $fare = new Fare();
 
@@ -23,12 +23,6 @@ class Fare
     {
         return $this->dinars;
     }
-
-    private function setDinars($dinars)
-    {
-        $this->dinars = $dinars;
-    }
-
     /**
      * 
      */
@@ -36,4 +30,16 @@ class Fare
     {
         return $this->dinars == $other->dinars;
     }
+
+    public function add(Fare $other) : Fare
+    {
+        $dinars = $this->dinars + $other->dinars;
+        return Fare::fromDinars($dinars);
+    }
+
+    private function setDinars($dinars)
+    {
+        $this->dinars = $dinars;
+    }
+
 }
